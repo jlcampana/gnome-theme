@@ -9,6 +9,7 @@ import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Meta from 'gi://Meta';
+import Mtk from 'gi://Mtk';
 import Shell from 'gi://Shell';
 import St from 'gi://St';
 
@@ -30,8 +31,11 @@ const APPS = {
 // Blur de las ventanas de Nautilus y Ptyxis (su opacidad la ponen ellas mismas): un actor "transparencias-blur" dentro del actor
 //    de la ventana, por debajo de la superficie y del tamaño del marco, con Shell.BlurEffect en
 //    modo BACKGROUND (desenfoca lo que hay detrás). Es la técnica de Blur my Shell, sin depender
-//    de ella. Un efecto de pintado le pide repintar cada pocos fotogramas, para que el desenfoque
-//    siga lo que se mueve detrás.
+//    de ella. En ese modo el desenfoque se recalcula entero cada vez que se pinta la ventana,
+//    pero Clutter solo repinta lo dañado: si cambia un trozo de lo que hay detrás, el desenfoque
+//    queda cortado. Por eso un efecto de pintado le pide repintar entera cada pocos fotogramas…
+//    solo si el repintado fue parcial: con un fondo animado detrás se repinta todo en cada
+//    fotograma y pedir más solo añadiría desenfoques completos de sobra.
 const TIPOS = [Meta.WindowType.NORMAL, Meta.WindowType.DIALOG, Meta.WindowType.MODAL_DIALOG];
 const NOMBRE_BLUR = 'transparencias-blur';
 const RADIO_ESQUINAS = 15;   // px de las esquinas redondeadas de las ventanas de libadwaita
@@ -45,10 +49,30 @@ class EfectoPintado extends Clutter.Effect {
     }
 
     vfunc_paint(nodo, contexto, flags) {
-        this._cb?.();
+        this._cb?.(contexto);
         super.vfunc_paint(nodo, contexto, flags);
     }
 });
+
+// ¿Se está repintando el actor entero? Sin zona de repintado es que se repinta todo. Ante
+// cualquier duda, no: se pide el repintado como antes.
+function repintadoCompleto(contexto, actor) {
+    try {
+        const zona = contexto.get_redraw_clip();
+        if (!zona)
+            return true;
+        const caja = actor.get_transformed_extents();
+        const x = Math.floor(caja.origin.x), y = Math.floor(caja.origin.y);
+        const rect = new Mtk.Rectangle({
+            x, y,
+            width: Math.ceil(caja.origin.x + caja.size.width) - x,
+            height: Math.ceil(caja.origin.y + caja.size.height) - y,
+        });
+        return zona.contains_rectangle(rect) === Mtk.RegionOverlap.IN;
+    } catch {
+        return false;
+    }
+}
 
 class GestorVentanas {
     constructor(ajustes) {
@@ -158,7 +182,11 @@ class GestorVentanas {
         actor.add_effect(efecto);
         let saltar = 0;
         const pintado = new EfectoPintado();
-        pintado.setCallback(() => {
+        pintado.setCallback(contexto => {
+            if (repintadoCompleto(contexto, actor)) {
+                saltar = 0;
+                return;
+            }
             if (saltar-- > 0)
                 return;
             saltar = PINTADOS_ENTRE_REPINTADOS;
