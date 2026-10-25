@@ -23,6 +23,7 @@ CON_PAQUETES=1
 CON_TEMA=1
 CON_EXTENSIONES=1
 CON_DESCARGAS=1
+CON_FONDOS_ANIMADOS=1
 
 uso() {
     cat <<EOF
@@ -38,6 +39,7 @@ Opciones (con curl: ... | bash -s -- <opciones>):
   --sin-paquetes      no instalar paquetes del sistema
   --sin-extensiones   no tocar las extensiones de GNOME
   --sin-descargas     no instalar scripts de descarga ni tracker
+  --sin-fondos-animados  no instalar los fondos animados (gnome-animated-wallpaper)
   --solo-tema         solo tema de GNOME (implica --sin-descargas)
   --solo-descargas    solo scripts de descarga y tracker (implica --sin-paquetes --sin-tema)
   -h, --ayuda         esta ayuda
@@ -50,6 +52,8 @@ Qué instala:
   · Descargas: ydl, yda, xdl, twitter, r34dl, allr34dl (con gallery-dl,
     yt-dlp, ffmpeg, Deno…) y el reproductor de música tracker.
   · Copia los fondos de wallpapers/ a la carpeta de imágenes del usuario.
+  · Fondos animados: vídeo de fondo de escritorio, con su app y su extensión
+    (instalador de jlcampana/gnome-animated-wallpaper).
   · Configuración de descargas en ~/.config/evilnagi-gnome-team/descargas.conf
 
 Todo lo que se sobrescribe se guarda en ~/backups/evilnagi-gnome-team-<fecha>/
@@ -67,8 +71,9 @@ while (( $# )); do
         --sin-paquetes)   CON_PAQUETES=0 ;;
         --sin-extensiones) CON_EXTENSIONES=0 ;;
         --sin-descargas)  CON_DESCARGAS=0 ;;
+        --sin-fondos-animados) CON_FONDOS_ANIMADOS=0 ;;
         --solo-tema)      CON_DESCARGAS=0 ;;
-        --solo-descargas) CON_DESCARGAS=1; CON_PAQUETES=0; CON_TEMA=0; CON_EXTENSIONES=0 ;;
+        --solo-descargas) CON_DESCARGAS=1; CON_PAQUETES=0; CON_TEMA=0; CON_EXTENSIONES=0; CON_FONDOS_ANIMADOS=0 ;;
         -h|--ayuda|--help) uso; exit 0 ;;
         *) morir "opción desconocida: $1 (usa --ayuda)" ;;
     esac
@@ -101,6 +106,7 @@ if (( CON_TEMA )); then
     aplicar_ajustes_gnome
     instalar_wallpapers
     (( CON_EXTENSIONES )) && instalar_extensiones_gnome
+    (( CON_FONDOS_ANIMADOS )) && instalar_fondos_animados
 fi
 
 (( CON_DESCARGAS )) && instalar_descargas

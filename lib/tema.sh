@@ -159,3 +159,19 @@ instalar_extensiones_gnome() {
     paso "Extensiones de GNOME"
     ejecutar extensiones.sh "--$EQUIPO"
 }
+
+# Fondos animados (app, extensión y scripts) viven en su propio repo con su instalador
+FONDOS_ANIMADOS_INSTALADOR="https://raw.githubusercontent.com/jlcampana/gnome-animated-wallpaper/main/install.sh"
+
+instalar_fondos_animados() {
+    paso "Fondos animados"
+    local args=()
+    (( ASUMIR )) && args+=(--si)
+    (( ${CON_PAQUETES:-1} )) || args+=(--sin-dependencias)
+    if curl -fsSL --retry 3 "$FONDOS_ANIMADOS_INSTALADOR" | bash -s -- "${args[@]}"; then
+        ok "Fondos animados instalados"
+    else
+        aviso "no se pudieron instalar los fondos animados; prueba a mano:"
+        aviso "  curl -fsSL $FONDOS_ANIMADOS_INSTALADOR | bash"
+    fi
+}

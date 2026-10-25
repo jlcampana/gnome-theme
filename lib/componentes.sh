@@ -18,13 +18,14 @@ COMPONENTES=(
     "extensiones|Extensiones de GNOME del tema y sus ajustes"
     "ajustes|Ajustes generales de GNOME (vuelve a poner los del tema)"
     "fondos|Fondos de pantalla en tu carpeta de imágenes"
+    "fondos-animados|Fondos animados: vídeo de fondo, con su app y su extensión (gnome-animated-wallpaper)"
     "descargas|Scripts de descarga (ydl, yda, xdl, twitter, r34dl, allr34dl) y el reproductor tracker"
     "paquetes|Todos los paquetes del sistema del tema"
     "alias|Alias reload y open en ~/.bashrc"
 )
 
 # Los que cambian una extensión de GNOME Shell: hace falta cerrar sesión para verlos.
-COMPONENTES_SHELL=" transparencias reborde barra-dock botones boton-aplicaciones clic-bandeja extensiones "
+COMPONENTES_SHELL=" transparencias reborde barra-dock botones boton-aplicaciones clic-bandeja extensiones fondos-animados "
 
 nombres_componentes() {
     local c
@@ -98,6 +99,8 @@ instalar_componente() { # instalar_componente <nombre>
         fondos)
             paso "Fondos de pantalla"
             instalar_wallpapers ;;
+        fondos-animados)
+            instalar_fondos_animados ;;
         descargas)
             if [[ $DISTRO == fedora ]]; then
                 command -v ffmpeg >/dev/null 2>&1 || preparar_repos_fedora

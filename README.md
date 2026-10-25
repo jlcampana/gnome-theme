@@ -30,9 +30,10 @@ Ese único comando:
 3. Instala con `dnf` o `apt` los paquetes que falten (iconos, fuentes, Ptyxis, gThumb, `openmpt123`…).
 4. Aplica el tema de GNOME: GTK, Nautilus, botones, dock, barra, transparencias, rebordes, iconos y fondo.
 5. Copia los fondos de `wallpapers/` a tu carpeta de imágenes (`~/Imágenes` o `~/Pictures`).
-6. Instala las extensiones de GNOME y sus ajustes.
-7. Instala los scripts de descarga (`ydl`, `yda`, `xdl`, `twitter`, `r34dl`, `allr34dl`) y el reproductor **tracker**.
-8. Guarda una copia de lo que sobrescribe en `~/backups/evilnagi-gnome-team-<fecha>/`.
+6. Instala las extensiones de GNOME y sus ajustes (entre ellas el fork de Media Controller, desde [su repo](https://github.com/jlcampana/gnome-extension-mediaplayer)).
+7. Instala los **fondos animados** (vídeo de fondo de escritorio) con el instalador de [gnome-animated-wallpaper](https://github.com/jlcampana/gnome-animated-wallpaper). Se salta con `--sin-fondos-animados`.
+8. Instala los scripts de descarga (`ydl`, `yda`, `xdl`, `twitter`, `r34dl`, `allr34dl`) y el reproductor **tracker**.
+9. Guarda una copia de lo que sobrescribe en `~/backups/evilnagi-gnome-team-<fecha>/`.
 
 El instalador pregunta si el equipo es portátil o sobremesa y pide confirmación antes de empezar. Las preguntas se leen por `/dev/tty`, así que funcionan aunque el script venga por una tubería (`curl | bash`).
 
@@ -104,6 +105,7 @@ varios (`… | bash -s -- transparencias iconos`). Desde un clon: `./componente.
 | `extensiones` | Extensiones de GNOME del tema y sus ajustes (`--portatil` / `--sobremesa`) |
 | `ajustes` | Ajustes generales de GNOME (vuelve a poner los del tema) |
 | `fondos` | Fondos de pantalla en tu carpeta de imágenes |
+| `fondos-animados` | Fondos animados: vídeo de fondo, con su app y su extensión ([gnome-animated-wallpaper](https://github.com/jlcampana/gnome-animated-wallpaper)) |
 | `descargas` | Scripts de descarga y el reproductor tracker (con ffmpeg, openmpt123…) |
 | `paquetes` | Todos los paquetes del sistema del tema |
 | `alias` | Alias `reload` y `open` en `~/.bashrc` |
@@ -123,8 +125,9 @@ El instalador es idempotente: se puede volver a ejecutar para actualizar. Todo l
 | **Botones del sistema** | Apagar/Reiniciar/Cerrar sesión y confirmaciones de GNOME Shell en rojo (mini-extensión `botones-sesion`) |
 | **Iconos** | [MoreWaita](https://github.com/somepaulo/MoreWaita) + papelera de [Tela-circle](https://github.com/vinceliuice/Tela-circle-icon-theme) en verde (mini-tema `Papelera-Tela`), icono de Retoques de Reversal y de 1Password en la bandeja |
 | **Terminal** | Ptyxis con el perfil **MSX** (fondo azul del V9938, paleta del TMS9918, fuente Hack 11, opacidad 85 % y carpetas en amarillo en `ls`) |
-| **Extensiones** | Las mismas de GNOME del equipo original, con sus ajustes: Dash to Dock, Just Perfection, DING, Top Bar Organizer, Vitals, Clipboard Indicator, P7 Borders, AppIndicator, Transparencias… |
+| **Extensiones** | Las mismas de GNOME del equipo original, con sus ajustes: Dash to Dock, Just Perfection, DING, Top Bar Organizer, Vitals, Clipboard Indicator, P7 Borders, AppIndicator, Transparencias, Media Controller (fork propio)… |
 | **Escritorio** | Modo oscuro, fondo del tema, 2 escritorios, botones de ventana a la izquierda, Ctrl+←/→ para cambiar de escritorio y ajustes de Nautilus/gThumb |
+| **Fondos animados** | Vídeo como fondo de escritorio, con su app de ajustes y su extensión; los instala el instalador de [gnome-animated-wallpaper](https://github.com/jlcampana/gnome-animated-wallpaper) |
 | **Fondos** | Copia los fondos de `wallpapers/` a la carpeta de imágenes del usuario (`~/Imágenes` o `~/Pictures`) sin sobrescribir los que ya existan |
 | **Descargas** | `ydl`, `yda`, `xdl`, `twitter`, `r34dl` y `allr34dl`, con `gallery-dl`, `yt-dlp`, `ffmpeg`, Deno y cookies del navegador |
 | **Tracker** | Reproductor de música tracker (`tracker`): explora modarchive.org y reproduce MOD/XM/S3M/IT con `openmpt123` |
