@@ -74,6 +74,41 @@ cd evilnagi-gnome-team
 | `--solo-descargas` | Solo descargas y tracker (implica `--sin-paquetes` y `--sin-tema`) |
 | `-h`, `--ayuda` | Ayuda |
 
+### Instalar o actualizar un componente suelto
+
+Para poner o actualizar solo una parte (por ejemplo, la extensión Transparencias) sin volver a
+pasar por todo el tema:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/componente.sh | bash -s -- transparencias
+```
+
+Sin nombre, enseña la lista y pregunta cuáles (por número o por nombre); se pueden poner
+varios (`… | bash -s -- transparencias iconos`). Desde un clon: `./componente.sh transparencias`.
+`--lista` enseña los componentes y `--si` no pregunta.
+
+| Componente | Qué instala o actualiza |
+|---|---|
+| `transparencias` | Extensión Transparencias (opacidad y blur de Nautilus y Ptyxis), su parte de Nautilus y `nautilus-python`. Conserva sus ajustes |
+| `iconos` | Iconos MoreWaita y papelera de Tela-circle |
+| `gtk` | GTK compacto estilo macOS y diálogos de confirmación |
+| `nautilus` | Nautilus compacto, Abrir con gThumb y panel lateral estrecho (con `nautilus-python` y gThumb) |
+| `terminal` | Ptyxis con el perfil MSX (instala Ptyxis si falta) |
+| `reborde` | Reborde de 2 px en las ventanas (P7 Borders) |
+| `barra-dock` | Barra superior y dock grises |
+| `botones` | Botones de sesión y de confirmación en rojo |
+| `boton-aplicaciones` | Botón de aplicaciones con imagen en el dock |
+| `clic-bandeja` | Clic en el icono de 1Password de la bandeja |
+| `extensiones` | Extensiones de GNOME del tema y sus ajustes (`--portatil` / `--sobremesa`) |
+| `ajustes` | Ajustes generales de GNOME (vuelve a poner los del tema) |
+| `fondos` | Fondos de pantalla en tu carpeta de imágenes |
+| `descargas` | Scripts de descarga y el reproductor tracker (con ffmpeg, openmpt123…) |
+| `paquetes` | Todos los paquetes del sistema del tema |
+| `alias` | Alias `reload` y `open` en `~/.bashrc` |
+
+Cada componente instala lo que necesita (solo los paquetes que falten) y deja sus scripts en
+`~/scripts`. Si toca una extensión de GNOME, avisa de que hay que cerrar sesión.
+
 El instalador es idempotente: se puede volver a ejecutar para actualizar. Todo lo que sobrescribe (GTK CSS, scripts, `.bashrc`…) se guarda antes en `~/backups/evilnagi-gnome-team-<fecha>/`.
 
 ## Contenido
@@ -126,11 +161,14 @@ Dependencias que instala: `python3`, `python3-venv`, `ffmpeg`, `openmpt123`, `un
 
 ```
 install.sh                 Bootstrap para curl | bash (descarga el tarball y llama a bin/instalar.sh)
+componente.sh              Bootstrap para curl | bash de un componente suelto (llama a bin/componente.sh)
 bin/instalar.sh            Instalador principal
+bin/componente.sh          Instala o actualiza componentes sueltos
 bin/desinstalar.sh         Desinstalador
 lib/comun.sh               Utilidades, detección de distro/GNOME, copias de seguridad
 lib/paquetes.sh            Paquetes dnf/apt y repos (RPM Fusion, universe)
-lib/tema.sh                Orquesta el tema y las extensiones
+lib/tema.sh                Orquesta el tema y las extensiones (una función por pieza)
+lib/componentes.sh         Lista de componentes sueltos y qué hace cada uno
 lib/ajustes-gnome.sh       Ajustes generales (dconf/gsettings), fondo y Nautilus
 lib/descargas.sh           Scripts de descarga, venvs, Deno y tracker
 scripts/tema/              Scripts del tema (cada uno se puede ejecutar suelto con --quitar)

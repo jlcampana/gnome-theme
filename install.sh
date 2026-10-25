@@ -5,6 +5,7 @@
 #
 # Descarga el repo (sin git, con el tarball de GitHub) a una carpeta temporal y
 # ejecuta bin/instalar.sh. Si ya estás dentro de un clon, usa el clon local.
+# Con EVILNAGI_ENTRADA=componente.sh ejecuta bin/componente.sh (lo usa componente.sh).
 #
 # Todo va dentro de main() para que bash termine de leer el script antes de
 # ejecutarlo: así funciona con `curl | bash` sin que las preguntas se coman
@@ -14,17 +15,22 @@ set -euo pipefail
 REPO="${EVILNAGI_REPO:-jlcampana/evilnagi-gnome-team}"
 RAMA="${EVILNAGI_RAMA:-main}"
 TARBALL="${EVILNAGI_TARBALL:-https://codeload.github.com/$REPO/tar.gz/refs/heads/$RAMA}"
+ENTRADA="${EVILNAGI_ENTRADA:-instalar.sh}"
+case $ENTRADA in
+    instalar.sh|componente.sh) ;;
+    *) echo "ERROR: EVILNAGI_ENTRADA no válida: $ENTRADA" >&2; exit 1 ;;
+esac
 
 main() {
     local origen="" tmp="" estado=0
 
     # 1. ¿Estamos dentro de un clon?
-    if [[ -n ${EVILNAGI_SOURCE:-} && -f "${EVILNAGI_SOURCE}/bin/instalar.sh" ]]; then
+    if [[ -n ${EVILNAGI_SOURCE:-} && -f "${EVILNAGI_SOURCE}/bin/$ENTRADA" ]]; then
         origen="$EVILNAGI_SOURCE"
     elif [[ -n ${BASH_SOURCE[0]:-} && -f ${BASH_SOURCE[0]} ]]; then
         local aqui
         aqui="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-        [[ -f "$aqui/bin/instalar.sh" ]] && origen="$aqui"
+        [[ -f "$aqui/bin/$ENTRADA" ]] && origen="$aqui"
     fi
 
     # 2. Si no, descargar el tarball del repo
@@ -54,7 +60,7 @@ main() {
         fi
     fi
 
-    bash "$origen/bin/instalar.sh" "$@" || estado=$?
+    bash "$origen/bin/$ENTRADA" "$@" || estado=$?
     return "$estado"
 }
 

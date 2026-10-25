@@ -53,6 +53,9 @@ Qué instala:
   · Configuración de descargas en ~/.config/evilnagi-gnome-team/descargas.conf
 
 Todo lo que se sobrescribe se guarda en ~/backups/evilnagi-gnome-team-<fecha>/
+
+Para instalar o actualizar solo una parte (p. ej. la extensión Transparencias):
+  curl -fsSL $RAW/componente.sh | bash -s -- transparencias     (--lista: todas)
 EOF
 }
 

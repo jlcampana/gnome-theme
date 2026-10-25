@@ -91,6 +91,30 @@ preparar_repos_ubuntu() {
     como_root apt-get update -q
 }
 
+# Para los componentes sueltos: instala solo los paquetes de la lista que falten (nombres de
+# la distro actual), sin el resto de la lista del tema.
+asegurar_paquetes() { # asegurar_paquetes <paquete>...
+    local falta=() p
+    for p in "$@"; do
+        if [[ $DISTRO == fedora ]]; then
+            rpm -q "$p" >/dev/null 2>&1 || falta+=("$p")
+        else
+            dpkg -s "$p" >/dev/null 2>&1 || falta+=("$p")
+        fi
+    done
+    (( ${#falta[@]} )) || return 0
+    info "Instalando lo que falta: ${falta[*]}…"
+    if [[ $DISTRO == fedora ]]; then
+        como_root dnf install -y --skip-unavailable "${falta[@]}"
+    else
+        como_root apt-get update -q && como_root apt-get install -y "${falta[@]}"
+    fi || aviso "no se pudo instalar: ${falta[*]}"
+}
+
+por_distro() { # por_distro <paquete en Fedora> <paquete en Ubuntu>
+    if [[ $DISTRO == fedora ]]; then echo "$1"; else echo "$2"; fi
+}
+
 instalar_paquetes() {
     paso "Paquetes del sistema"
     local lista paquete
