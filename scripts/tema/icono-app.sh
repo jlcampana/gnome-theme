@@ -25,7 +25,7 @@ set -euo pipefail
 
 APPS="$HOME/.local/share/applications"
 ICONOS="$HOME/.local/share/icons/apps-propias"
-REPO="jlcampana/evilnagi-gnome-team"
+REPO="jlcampana/gnome-theme"
 RAW="https://raw.githubusercontent.com/$REPO/main"
 RETOQUES_URL="https://raw.githubusercontent.com/yeyushengfan258/Reversal-icon-theme/master/src/apps/scalable/gnome-tweak-tool.svg"
 

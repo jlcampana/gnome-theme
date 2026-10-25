@@ -1,4 +1,6 @@
-# Evilnagi GNOME Team
+# GNOME Theme
+
+> Antes se llamaba **evilnagi-gnome-team**. La configuración (`~/.config/evilnagi-gnome-team/`), las copias de seguridad y las marcas del `.bashrc` conservan ese nombre para no romper las instalaciones que ya existen.
 
 Tema completo de escritorio **GNOME** para **Fedora** y **Ubuntu**, instalable en un solo paso y sin clonar el repositorio. Deja el escritorio con la misma pinta que el equipo original: barra y dock grises, ventanas compactas estilo macOS, botones de cerrar y de confirmar en rojo, transparencias, reborde de ventanas, iconos MoreWaita con la papelera de Tela-circle, terminal MSX, extensiones de GNOME y scripts propios.
 
@@ -18,7 +20,7 @@ Probado en **Fedora 44** con **GNOME 50**. En **Ubuntu 24.04+** se instalan los 
 Abre una terminal en el equipo donde quieras poner el tema y pega:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/install.sh | bash
 ```
 
 Ese único comando:
@@ -41,13 +43,13 @@ El instalador pregunta si el equipo es portátil o sobremesa y pide confirmació
 Para que no pregunte nada (usa los valores por defecto):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/install.sh | bash -s -- --si
+curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/install.sh | bash -s -- --si
 ```
 
 En un portátil (no instala Soft Brightness Plus, que choca con el brillo del portátil):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/install.sh | bash -s -- --si --portatil
+curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/install.sh | bash -s -- --si --portatil
 ```
 
 ### Instalación desde un clon
@@ -55,8 +57,8 @@ curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/
 Si prefieres tener el repositorio en local:
 
 ```bash
-git clone https://github.com/jlcampana/evilnagi-gnome-team.git
-cd evilnagi-gnome-team
+git clone https://github.com/jlcampana/gnome-theme.git
+cd gnome-theme
 ./install.sh            # o ./bin/instalar.sh
 ```
 
@@ -80,7 +82,7 @@ Para poner o actualizar solo una parte (por ejemplo, la extensión Transparencia
 pasar por todo el tema:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/componente.sh | bash -s -- transparencias
+curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/componente.sh | bash -s -- transparencias
 ```
 
 Sin nombre, enseña la lista y pregunta cuáles (por número o por nombre); se pueden poner

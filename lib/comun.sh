@@ -8,7 +8,7 @@ if [[ -z ${RAIZ:-} ]]; then
 fi
 export RAIZ
 
-REPO="${REPO:-jlcampana/evilnagi-gnome-team}"
+REPO="${REPO:-jlcampana/gnome-theme}"
 RAMA="${RAMA:-main}"
 RAW="https://raw.githubusercontent.com/$REPO/$RAMA"
 TARBALL="https://codeload.github.com/$REPO/tar.gz/refs/heads/$RAMA"

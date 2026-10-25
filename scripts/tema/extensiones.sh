@@ -28,7 +28,7 @@
 
 set -euo pipefail
 
-REPO="jlcampana/evilnagi-gnome-team"
+REPO="jlcampana/gnome-theme"
 RAW="https://raw.githubusercontent.com/$REPO/main"
 EXT="$HOME/.local/share/gnome-shell/extensions"
 AJUSTES=1

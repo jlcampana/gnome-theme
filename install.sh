@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Evilnagi GNOME Team — instalador de un solo uso.
 #
-#   curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/install.sh | bash
 #
 # Descarga el repo (sin git, con el tarball de GitHub) a una carpeta temporal y
 # ejecuta bin/instalar.sh. Si ya estás dentro de un clon, usa el clon local.
@@ -12,7 +12,7 @@
 # las líneas que faltan (se leen por /dev/tty).
 set -euo pipefail
 
-REPO="${EVILNAGI_REPO:-jlcampana/evilnagi-gnome-team}"
+REPO="${EVILNAGI_REPO:-jlcampana/gnome-theme}"
 RAMA="${EVILNAGI_RAMA:-main}"
 TARBALL="${EVILNAGI_TARBALL:-https://codeload.github.com/$REPO/tar.gz/refs/heads/$RAMA}"
 ENTRADA="${EVILNAGI_ENTRADA:-instalar.sh}"
@@ -37,7 +37,7 @@ main() {
     if [[ -z $origen ]]; then
         command -v curl >/dev/null 2>&1 ||
             { echo "ERROR: hace falta curl para descargar el instalador." >&2; exit 1; }
-        tmp="$(mktemp -d "${TMPDIR:-/tmp}/evilnagi-gnome-team.XXXXXX")"
+        tmp="$(mktemp -d "${TMPDIR:-/tmp}/gnome-theme.XXXXXX")"
         trap 'rm -rf "$TMP_REPO"' EXIT
         TMP_REPO="$tmp"
 

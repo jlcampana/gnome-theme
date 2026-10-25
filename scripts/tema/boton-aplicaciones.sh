@@ -24,7 +24,7 @@ set -euo pipefail
 UUID="boton-aplicaciones@pandi.local"
 DIR="$HOME/.local/share/gnome-shell/extensions/$UUID"
 IMG="$HOME/.local/share/icons/apps-propias/boton-aplicaciones.png"
-REPO="jlcampana/evilnagi-gnome-team"
+REPO="jlcampana/gnome-theme"
 RAW="https://raw.githubusercontent.com/$REPO/main"
 EN_REPO="tema/iconos/apps-propias/boton-aplicaciones.png"
 DOCK=/org/gnome/shell/extensions/dash-to-dock  # con dconf: vale aunque Dash to Dock esté en ~/.local (sin esquema global)

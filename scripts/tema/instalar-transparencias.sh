@@ -17,7 +17,7 @@
 set -euo pipefail
 
 UUID="transparencias@pandi.local"
-REPO="jlcampana/evilnagi-gnome-team"
+REPO="jlcampana/gnome-theme"
 RAW="https://raw.githubusercontent.com/$REPO/main"
 EXT_DIR="$HOME/.local/share/gnome-shell/extensions/$UUID"
 NPY_DIR="$HOME/.local/share/nautilus-python/extensions"

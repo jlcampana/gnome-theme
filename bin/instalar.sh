@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Instalador de Evilnagi GNOME Team.
 #
-#   curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/install.sh | bash
 #
 # Este archivo es el que se ejecuta dentro del repo (install.sh solo lo descarga
 # y lo llama). También se puede lanzar desde un clon: ./bin/instalar.sh

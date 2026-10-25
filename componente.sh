@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Evilnagi GNOME Team — instalar o actualizar componentes sueltos.
 #
-#   curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/componente.sh | bash -s -- transparencias
-#   curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/componente.sh | bash   (pregunta cuáles)
+#   curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/componente.sh | bash -s -- transparencias
+#   curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/componente.sh | bash   (pregunta cuáles)
 #
 # Dentro de un clon ejecuta bin/componente.sh; si no, descarga el repo igual que install.sh
 # (que se encarga de eso) y lo ejecuta. Todo dentro de main(), como install.sh, para que
 # funcione con `curl | bash`.
 set -euo pipefail
 
-REPO="${EVILNAGI_REPO:-jlcampana/evilnagi-gnome-team}"
+REPO="${EVILNAGI_REPO:-jlcampana/gnome-theme}"
 RAMA="${EVILNAGI_RAMA:-main}"
 
 main() {

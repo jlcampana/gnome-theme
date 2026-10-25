@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Instala o actualiza componentes sueltos de Evilnagi GNOME Team.
 #
-#   curl -fsSL https://raw.githubusercontent.com/jlcampana/evilnagi-gnome-team/main/componente.sh | bash -s -- transparencias
+#   curl -fsSL https://raw.githubusercontent.com/jlcampana/gnome-theme/main/componente.sh | bash -s -- transparencias
 #
 # Este archivo es el que se ejecuta dentro del repo (componente.sh solo lo descarga y lo
 # llama). También se puede lanzar desde un clon: ./bin/componente.sh transparencias
