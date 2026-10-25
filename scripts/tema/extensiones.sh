@@ -9,6 +9,9 @@
 # está dentro de él y, si no, de GitHub (el repo es público, sin gh).
 #
 # Notas:
+#   - Las "repo" (forks propios) se instalan con el install.sh de su repo (tabla EN_REPO), y
+#     las "retirada" (p. ej. la Advanced Media Controller original, sustituida por el fork
+#     media-controller@jlcampana.github.io) se desinstalan si están.
 #   - Las propias (*@pandi.local) no se bajan: las crean sus scripts (barra-dock-gris.sh,
 #     botones-sesion-rojos.sh, instalar-transparencias.sh). Aquí solo se activan o desactivan.
 #   - Las de sistema que no estén instaladas se saltan (vienen con paquetes de la distro).
@@ -33,6 +36,10 @@ RAW="https://raw.githubusercontent.com/$REPO/main"
 EXT="$HOME/.local/share/gnome-shell/extensions"
 AJUSTES=1
 EQUIPO=""
+# Extensiones que se instalan desde su propio repo: uuid → install.sh (curl | bash)
+declare -A EN_REPO=(
+    [media-controller@jlcampana.github.io]="https://raw.githubusercontent.com/jlcampana/gnome-extension-mediaplayer/main/install.sh"
+)
 # Extensiones que solo tienen sentido en el sobremesa (separadas por espacios)
 SOLO_SOBREMESA="soft-brightness-plus@joelkitching.com"
 for a in "$@"; do
@@ -76,9 +83,28 @@ fi
 
 instalada() { [[ -d "$EXT/$1" || -d "/usr/share/gnome-shell/extensions/$1" ]]; }
 
-# --- 1. Instalar las que falten
+# --- 1. Instalar las que falten (y quitar las retiradas)
 while read -r uuid estado origen; do
-    [[ -z "$uuid" || "$origen" != usuario || "$uuid" == *@pandi.local ]] && continue
+    [[ -z "$uuid" || "$uuid" == \#* ]] && continue
+    if [[ "$origen" == retirada ]]; then
+        if [[ -d "$EXT/$uuid" ]]; then
+            gnome-extensions disable "$uuid" 2>/dev/null || true
+            gnome-extensions uninstall "$uuid" 2>/dev/null || rm -rf "${EXT:?}/$uuid"
+            echo "Desinstalada (retirada del tema): $uuid"
+        fi
+        continue
+    fi
+    if [[ "$origen" == repo ]]; then
+        if [[ -z "${EN_REPO[$uuid]:-}" ]]; then
+            echo "AVISO: $uuid es de tipo repo pero no está en EN_REPO; se salta."
+        elif curl -fsSL --retry 3 "${EN_REPO[$uuid]}" | bash; then
+            echo "Instalada (desde su repo): $uuid"
+        else
+            echo "AVISO: no se pudo instalar $uuid desde ${EN_REPO[$uuid]}; se salta."
+        fi
+        continue
+    fi
+    [[ "$origen" != usuario || "$uuid" == *@pandi.local ]] && continue
     [[ $UBUNTU == 1 && "$uuid" == dash-to-dock@* ]] && continue
     solo_sobremesa "$uuid" && { echo "Portátil: no se instala $uuid"; continue; }
     instalada "$uuid" && continue

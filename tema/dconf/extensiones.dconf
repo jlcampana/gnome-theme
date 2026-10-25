@@ -160,7 +160,7 @@ hpadding=3
 
 [top-bar-organizer]
 center-box-order=['dateMenu']
-left-box-order=['activities', 'Media Controls', 'media-controls-advanced-media-controller@sanjai.com', 'vitalsMenu']
+left-box-order=['activities', 'media-controls-media-controller@jlcampana.github.io', 'Media Controls', 'vitalsMenu']
 right-box-order=['appindicator-kstatusnotifieritem-1Password_status_icon_1', 'appindicator-kstatusnotifieritem-Claude_status_icon_1', 'appindicator-kstatusnotifieritem-TelegramDesktop', 'clipboardIndicator', 'drive-menu', 'appindicator-kstatusnotifieritem-steam', 'appindicator-kstatusnotifieritem-NordVPN', 'screenRecording', 'screenSharing', 'dwellClick', 'a11y', 'keyboard', 'quickSettings']
 
 [topbar-weather]

@@ -1,7 +1,10 @@
 # Extensiones de GNOME del tema.
-# Formato: <uuid> <activa|inactiva> <usuario|sistema>
+# Formato: <uuid> <activa|inactiva> <usuario|sistema|repo|retirada>
 #
 # - usuario: se instala desde extensions.gnome.org si falta.
+# - repo: se instala con el install.sh de su propio repo de GitHub
+#   (la tabla EN_REPO de scripts/tema/extensiones.sh).
+# - retirada: ya no forma parte del tema; si está instalada, se desinstala.
 # - sistema: viene con la distro (gnome-shell-extensions); si no está, se salta.
 # - *@pandi.local: extensiones propias del tema; las crean sus scripts y aquí
 #   solo se activan o desactivan.
@@ -9,7 +12,7 @@
 #   mismos ajustes: el dock queda igual).
 appindicatorsupport@rgcjonas.gmail.com activa sistema
 ubuntu-appindicators@ubuntu.com activa sistema
-advanced-media-controller@sanjai.com activa usuario
+advanced-media-controller@sanjai.com inactiva retirada
 barra-nautilus@pandi.local activa usuario
 blur-my-shell@aunetx inactiva usuario
 boton-aplicaciones@pandi.local activa usuario
@@ -20,6 +23,7 @@ dash-to-dock@micxgx.gmail.com activa usuario
 ding@rastersoft.com activa usuario
 drive-menu@gnome-shell-extensions.gcampax.github.com activa sistema
 just-perfection-desktop@just-perfection activa usuario
+media-controller@jlcampana.github.io activa repo
 launch-new-instance@gnome-shell-extensions.gcampax.github.com inactiva sistema
 mediacontrols@cliffniff.github.com inactiva usuario
 p7-borders@prasannavl.com activa usuario
