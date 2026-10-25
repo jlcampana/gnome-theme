@@ -1,6 +1,6 @@
 # trackerplay
 
-> Incluido en [evilnagi-gnome-team](https://github.com/jlcampana/gnome-theme): su instalador
+> Incluido en [gnome-theme](https://github.com/jlcampana/gnome-theme): su instalador
 > ya deja el comando `tracker` listo, con `openmpt123` y Textual. Las instrucciones de abajo son las
 > del repositorio original de la aplicación.
 
