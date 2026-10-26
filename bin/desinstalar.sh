@@ -71,8 +71,11 @@ if grep -qE '# >>> evilnagi-gnome-team( aliases)? >>>' "$HOME/.bashrc" 2>/dev/nu
 fi
 
 paso "Tracker"
+# El reproductor de versiones anteriores del tema. python-tracker y DartTracker tienen su repo y su
+# desinstalación aparte.
 rm -rf "$HOME/.local/share/trackerplay-app"
-rm -f "$HOME/.local/bin/tracker"
+[[ $(readlink "$HOME/.local/bin/tracker" 2>/dev/null) == *trackerplay-app* ]] && rm -f "$HOME/.local/bin/tracker"
+info "python-tracker y DartTracker se quedan: tienen su propio repo"
 
 if (( TODO )); then
     paso "Entornos de Python y configuración"

@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # Scripts de descarga (YouTube, X/Twitter, rule34), sus dependencias de Python,
-# Deno y el reproductor de música tracker.
+# Deno y los reproductores de música tracker (python-tracker y DartTracker, de sus repos).
 # Requiere lib/comun.sh cargado.
 
 VENV_DESCARGAS="$HOME/.local/share/gallery-dl-venv"
-VENV_TRACKER="$HOME/.local/share/trackerplay-venv"
-APP_TRACKER="$HOME/.local/share/trackerplay-app"
 
 bloque_path() {
     local bashrc="$HOME/.bashrc"
@@ -60,30 +58,22 @@ instalar_deno() {
     rm -rf "$tmp"
 }
 
+# Los reproductores tracker tienen repo propio: python-tracker (terminal, comando «tracker») y
+# DartTracker (ventana, comando «darttracker»). Sus instaladores ponen openmpt123.
 instalar_tracker() {
-    local origen="$RAIZ/extras/trackerplay"
-    [[ -d $origen ]] || { aviso "no encuentro extras/trackerplay"; return 0; }
-
-    mkdir -p "$APP_TRACKER"
-    cp -a "$origen"/. "$APP_TRACKER"/
-    chmod +x "$APP_TRACKER/tracker.sh" "$APP_TRACKER/tracker.py"
-    info "Preparando el reproductor tracker (Textual)…"
-    if [[ ! -x "$VENV_TRACKER/bin/python" ]]; then
-        python3 -m venv "$VENV_TRACKER" || { aviso "no se pudo crear $VENV_TRACKER"; return 1; }
-    fi
-    "$VENV_TRACKER/bin/pip" install -q -U pip >/dev/null 2>&1 || true
-    if "$VENV_TRACKER/bin/pip" install -q -r "$APP_TRACKER/requirements.txt"; then
-        ok "Tracker instalado en $APP_TRACKER"
-    else
-        aviso "no se pudieron instalar las dependencias del tracker (Textual)"
-    fi
-    mkdir -p "$HOME/.local/bin"
-    ln -sf "$APP_TRACKER/tracker.sh" "$HOME/.local/bin/tracker"
-    ok "Comando 'tracker' disponible en ~/.local/bin/tracker"
+    local repo
+    for repo in python-tracker DartTracker; do
+        info "Instalando $repo…"
+        if curl -fsSL "https://raw.githubusercontent.com/jlcampana/$repo/main/install.sh" | bash; then
+            ok "$repo instalado"
+        else
+            aviso "no se pudo instalar $repo"
+        fi
+    done
 }
 
 instalar_descargas() {
-    paso "Scripts de descarga y reproductor tracker"
+    paso "Scripts de descarga y reproductores tracker"
 
     mkdir -p "$HOME/scripts" "$HOME/.local/bin" "$CONFIG_DIR"
 
@@ -110,6 +100,4 @@ instalar_descargas() {
 
     command -v ffmpeg >/dev/null 2>&1 && ok "ffmpeg disponible" ||
         aviso "ffmpeg no está instalado: ydl no podrá unir vídeo+audio ni convertir a mp3"
-    command -v openmpt123 >/dev/null 2>&1 ||
-        aviso "openmpt123 no está instalado: tracker no podrá reproducir módulos"
 }

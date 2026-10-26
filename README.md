@@ -32,7 +32,7 @@ Ese único comando:
 5. Copia los fondos de `wallpapers/` a tu carpeta de imágenes (`~/Imágenes` o `~/Pictures`).
 6. Instala las extensiones de GNOME y sus ajustes (entre ellas el fork de Media Controller, desde [su repo](https://github.com/jlcampana/gnome-extension-mediaplayer)).
 7. Instala los **fondos animados** (vídeo de fondo de escritorio) con el instalador de [gnome-animated-wallpaper](https://github.com/jlcampana/gnome-animated-wallpaper). Se salta con `--sin-fondos-animados`.
-8. Instala los scripts de descarga (`ydl`, `yda`, `xdl`, `twitter`, `r34dl`, `allr34dl`) y el reproductor **tracker**.
+8. Instala los scripts de descarga (`ydl`, `yda`, `xdl`, `twitter`, `r34dl`, `allr34dl`) y los reproductores de música tracker con los instaladores de [python-tracker](https://github.com/jlcampana/python-tracker) y [DartTracker](https://github.com/jlcampana/DartTracker).
 9. Guarda una copia de lo que sobrescribe en `~/backups/evilnagi-gnome-team-<fecha>/`.
 
 El instalador pregunta si el equipo es portátil o sobremesa y pide confirmación antes de empezar. Las preguntas se leen por `/dev/tty`, así que funcionan aunque el script venga por una tubería (`curl | bash`).
@@ -130,7 +130,7 @@ El instalador es idempotente: se puede volver a ejecutar para actualizar. Todo l
 | **Fondos animados** | Vídeo como fondo de escritorio, con su app de ajustes y su extensión; los instala el instalador de [gnome-animated-wallpaper](https://github.com/jlcampana/gnome-animated-wallpaper) |
 | **Fondos** | Copia los fondos de `wallpapers/` a la carpeta de imágenes del usuario (`~/Imágenes` o `~/Pictures`) sin sobrescribir los que ya existan |
 | **Descargas** | `ydl`, `yda`, `xdl`, `twitter`, `r34dl` y `allr34dl`, con `gallery-dl`, `yt-dlp`, `ffmpeg`, Deno y cookies del navegador |
-| **Tracker** | Reproductor de música tracker (`tracker`): explora modarchive.org y reproduce MOD/XM/S3M/IT con `openmpt123` |
+| **Tracker** | Reproductores de música tracker: [python-tracker](https://github.com/jlcampana/python-tracker) (`tracker`, en la terminal) y [DartTracker](https://github.com/jlcampana/DartTracker) (`darttracker`, en ventana). Exploran modarchive.org y reproducen MOD/XM/S3M/IT con `openmpt123` |
 
 Los fondos de `wallpapers/` se copian a la carpeta de imágenes del sistema (`~/Imágenes` o `~/Pictures`, según el idioma) y se pueden elegir en **Ajustes → Apariencia → Fondo**.
 
@@ -147,7 +147,7 @@ xdl  https://x.com/usuario/media   # imágenes de X (con -v, también vídeos)
 twitter                            # procesa las URLs de listas.md
 r34dl  "etiqueta1 etiqueta2"       # rule34.xxx
 allr34dl                           # aplica r34dl a todas las URLs de una lista
-tracker                            # explorador y reproductor de módulos
+tracker                            # explorador y reproductor de módulos (darttracker, en ventana)
 ```
 
 La configuración está en **`~/.config/evilnagi-gnome-team/descargas.conf`**:
@@ -156,9 +156,8 @@ La configuración está en **`~/.config/evilnagi-gnome-team/descargas.conf`**:
 - `NAVEGADOR`: de dónde se leen las cookies (`brave`, `chrome`, `chromium`, `firefox`…).
 - `TWITTER_LISTA` y `ALLR34_LISTA`: ficheros de listas de URLs.
 - `R34_API_KEY` / `R34_USER_ID`: credenciales opcionales del API de rule34.
-- `TRACKER_DIR`: biblioteca local de módulos (por defecto `Música/Tracker`).
 
-Dependencias que instala: `python3`, `python3-venv`, `ffmpeg`, `openmpt123`, `unzip` y los entornos de Python `~/.local/share/gallery-dl-venv` (gallery-dl, yt-dlp, yt-dlp-ejs, secretstorage, curl_cffi) y `~/.local/share/trackerplay-venv` (Textual). **Deno** se baja de su web oficial a `~/.local/bin/deno`.
+Dependencias que instala: `python3`, `python3-venv`, `ffmpeg`, `openmpt123`, `unzip` y el entorno de Python `~/.local/share/gallery-dl-venv` (gallery-dl, yt-dlp, yt-dlp-ejs, secretstorage, curl_cffi). Los reproductores tracker se instalan con sus propios instaladores. **Deno** se baja de su web oficial a `~/.local/bin/deno`.
 
 > Para descargar con cookies, el navegador debe haberse abierto al menos una vez con la sesión iniciada y el llavero de GNOME desbloqueado.
 
@@ -175,7 +174,7 @@ lib/paquetes.sh            Paquetes dnf/apt y repos (RPM Fusion, universe)
 lib/tema.sh                Orquesta el tema y las extensiones (una función por pieza)
 lib/componentes.sh         Lista de componentes sueltos y qué hace cada uno
 lib/ajustes-gnome.sh       Ajustes generales (dconf/gsettings), fondo y Nautilus
-lib/descargas.sh           Scripts de descarga, venvs, Deno y tracker
+lib/descargas.sh           Scripts de descarga, venv, Deno y reproductores tracker
 scripts/tema/              Scripts del tema (cada uno se puede ejecutar suelto con --quitar)
 scripts/descargas/         ydl, yda, xdl, twitter, r34dl, allr34dl, r34html.py
 tema/dconf/                Ajustes de las extensiones
@@ -185,7 +184,6 @@ tema/nautilus-python/      Extensiones de Nautilus (gThumb, panel estrecho, opac
 tema/iconos/apps-propias/  Iconos propios (botón del dock, bandeja de 1Password)
 tema/fondos/fondo.svg      Fondo del tema
 wallpapers/                Fondos de pantalla que se copian a la carpeta de imágenes
-extras/trackerplay/        Reproductor de música tracker
 ```
 
 ## Desinstalar

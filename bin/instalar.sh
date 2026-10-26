@@ -50,7 +50,7 @@ Qué instala:
   · Extensiones de GNOME y sus ajustes (Dash to Dock se omite en Ubuntu).
   · Scripts del tema en ~/scripts, y ~/scripts y ~/.local/bin en el PATH.
   · Descargas: ydl, yda, xdl, twitter, r34dl, allr34dl (con gallery-dl,
-    yt-dlp, ffmpeg, Deno…) y el reproductor de música tracker.
+    yt-dlp, ffmpeg, Deno…) y los reproductores tracker (python-tracker y DartTracker).
   · Copia los fondos de wallpapers/ a la carpeta de imágenes del usuario.
   · Fondos animados: vídeo de fondo de escritorio, con su app y su extensión
     (instalador de jlcampana/gnome-animated-wallpaper).
