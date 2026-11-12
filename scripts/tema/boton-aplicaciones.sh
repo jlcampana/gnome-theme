@@ -83,7 +83,7 @@ cat > "$DIR/metadata.json" <<'EOF'
   "uuid": "boton-aplicaciones@pandi.local",
   "name": "Botón de aplicaciones con imagen",
   "description": "Pone una imagen propia en el botón Mostrar aplicaciones de Dash to Dock. La crea boton-aplicaciones.sh.",
-  "shell-version": ["46", "47", "48", "49", "50"]
+  "shell-version": ["46", "47", "48", "49", "50", "51"]
 }
 EOF
 cat > "$DIR/extension.js" <<'EOF'

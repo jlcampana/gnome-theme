@@ -55,7 +55,7 @@ cat > "$DIR/metadata.json" <<'EOF'
   "uuid": "clic-bandeja@pandi.local",
   "name": "Clic de bandeja abre la app",
   "description": "Clic izquierdo en el icono de 1Password de la bandeja: abre 1Password en vez del menú (el clic derecho sigue mostrando el menú). La crea clic-bandeja.sh.",
-  "shell-version": ["46", "47", "48", "49", "50"]
+  "shell-version": ["46", "47", "48", "49", "50", "51"]
 }
 EOF
 cat > "$DIR/extension.js" <<EOF

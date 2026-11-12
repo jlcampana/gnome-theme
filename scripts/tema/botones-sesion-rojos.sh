@@ -110,7 +110,7 @@ cat > "$DIR/metadata.json" <<'EOF'
   "uuid": "botones-sesion@pandi.local",
   "name": "Botones de sesión rojos",
   "description": "Icono de apagar del menú y botón de confirmar de los diálogos de Apagar, Reiniciar, Cerrar sesión y contraseña en rojo. Extensión local, solo añade stylesheet.css (la crea botones-sesion-rojos.sh).",
-  "shell-version": ["46", "47", "48", "49", "50"]
+  "shell-version": ["46", "47", "48", "49", "50", "51"]
 }
 EOF
 cat > "$DIR/extension.js" <<'EOF'

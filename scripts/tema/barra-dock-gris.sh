@@ -77,7 +77,7 @@ cat > "$DIR/metadata.json" <<'EOF'
   "uuid": "barra-nautilus@pandi.local",
   "name": "Barra Nautilus",
   "description": "Barra superior del mismo gris que el panel lateral de Nautilus. Extensión local, solo añade stylesheet.css (la crea barra-dock-gris.sh).",
-  "shell-version": ["46", "47", "48", "49", "50"]
+  "shell-version": ["46", "47", "48", "49", "50", "51"]
 }
 EOF
 cat > "$DIR/extension.js" <<'EOF'
