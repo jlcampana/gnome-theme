@@ -117,8 +117,25 @@ windowcontrols button {
   margin: 0 1px;
 }
 
+/* El tema Default de GTK4 impone min-width/min-height: 30px en la imagen y
+   eso gana sobre el min-width del botón. Sin esto, el botón mide ~34px. */
 windowcontrols button > image {
+  min-width: 16px;
+  min-height: 16px;
   padding: 2px;
+}
+
+/* Solo Chromium/Brave en modo GTK: su cabecera lleva la clase .header-bar.
+   Chromium usa un espaciado fijo de 6px entre botones (GTK usa 3px) y su
+   margen exterior izquierdo es solo el padding de la headerbar. */
+headerbar.header-bar.titlebar {
+  padding-left: 11px;
+  padding-right: 11px;
+}
+
+headerbar.header-bar.titlebar windowcontrols > button {
+  margin-left: 0;
+  margin-right: -1px;
 }
 
 headerbar .title {

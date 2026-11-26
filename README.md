@@ -119,7 +119,7 @@ El instalador es idempotente: se puede volver a ejecutar para actualizar. Todo l
 
 | Bloque | Qué hace |
 |---|---|
-| **GTK / Nautilus** | Barras de título de 30 px y botones pequeños (estilo macOS), botón de cerrar rojo en GTK 4, pestañas compactas, Nautilus sin el título «Archivos» y con el panel lateral estrecho, diálogos de confirmación con los botones en fila y el botón destructivo en rojo |
+| **GTK / Nautilus** | Barras de título de 30 px y botones pequeños (estilo macOS), botón de cerrar rojo en GTK 4, botones de ventana de Chrome/Brave (con el tema GTK) iguales que los del resto del sistema, pestañas compactas, Nautilus sin el título «Archivos» y con el panel lateral estrecho, diálogos de confirmación con los botones en fila y el botón destructivo en rojo |
 | **Barra y dock** | Barra superior y dock del gris `#2e2e32` al 95 % (mini-extensión `barra-nautilus`), dock fijo a la izquierda, iconos de 32 px y botón «Mostrar aplicaciones» con imagen propia |
 | **Ventanas** | Reborde de 2 px con P7 Borders (color de acento en la ventana activa), transparencias con blur en Nautilus y Ptyxis |
 | **Botones del sistema** | Apagar/Reiniciar/Cerrar sesión y confirmaciones de GNOME Shell en rojo (mini-extensión `botones-sesion`) |
