@@ -95,7 +95,7 @@ varios (`… | bash -s -- transparencias iconos`). Desde un clon: `./componente.
 | `transparencias` | Extensión Transparencias (opacidad y blur de Nautilus y Ptyxis), su parte de Nautilus y `nautilus-python`. Conserva sus ajustes |
 | `iconos` | Iconos MoreWaita y papelera de Tela-circle |
 | `gtk` | GTK compacto estilo macOS y diálogos de confirmación |
-| `nautilus` | Nautilus compacto, Abrir con gThumb y panel lateral estrecho (con `nautilus-python` y gThumb) |
+| `nautilus` | Nautilus compacto, Abrir con gThumb, panel lateral estrecho y las extensiones de [gnome.nautilus.extensions](https://github.com/jlcampana/gnome.nautilus.extensions) y [gnome.nautilus.sidebar-icons](https://github.com/jlcampana/gnome.nautilus.sidebar-icons) (con `nautilus-python`, gThumb, rsync y lo necesario para compilar) |
 | `terminal` | Ptyxis con el perfil MSX (instala Ptyxis si falta) |
 | `reborde` | Reborde de 2 px en las ventanas (P7 Borders) |
 | `barra-dock` | Barra superior y dock grises |
@@ -120,6 +120,7 @@ El instalador es idempotente: se puede volver a ejecutar para actualizar. Todo l
 | Bloque | Qué hace |
 |---|---|
 | **GTK / Nautilus** | Barras de título de 30 px y botones pequeños (estilo macOS), botón de cerrar rojo en GTK 4, botones de ventana de Chrome/Brave (con el tema GTK) iguales que los del resto del sistema, pestañas compactas, Nautilus sin el título «Archivos» y con el panel lateral estrecho, diálogos de confirmación con los botones en fila y el botón destructivo en rojo |
+| **Extensiones de Nautilus** | Barra de iconos configurable en la cabecera, botón de búsqueda junto a los de vista, pegar con rsync y espacio libre de las unidades ([gnome.nautilus.extensions](https://github.com/jlcampana/gnome.nautilus.extensions)); icono a elegir para cada atajo del panel lateral ([gnome.nautilus.sidebar-icons](https://github.com/jlcampana/gnome.nautilus.sidebar-icons), se compila e instala con sudo). Se instalan con sus instaladores remotos |
 | **Barra y dock** | Barra superior y dock del gris `#2e2e32` al 95 % (mini-extensión `barra-nautilus`), dock fijo a la izquierda, iconos de 32 px y botón «Mostrar aplicaciones» con imagen propia |
 | **Ventanas** | Reborde de 2 px con P7 Borders (color de acento en la ventana activa), transparencias con blur en Nautilus y Ptyxis |
 | **Botones del sistema** | Apagar/Reiniciar/Cerrar sesión y confirmaciones de GNOME Shell en rojo (mini-extensión `botones-sesion`) |

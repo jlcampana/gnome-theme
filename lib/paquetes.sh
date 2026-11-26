@@ -9,15 +9,20 @@ curl
 dconf
 desktop-file-utils
 ffmpeg
+gcc
 git
 glib2
 gnome-tweaks
 gthumb
 gtk-update-icon-cache
+gtk4-devel
+make
 nautilus-python
 openmpt123
+pkgconf-pkg-config
 python3
 python3-pip
+rsync
 source-foundry-hack-fonts
 unzip
 xdg-utils
@@ -26,6 +31,7 @@ EOF
 
 paquetes_ubuntu() {
     cat <<'EOF'
+build-essential
 ca-certificates
 curl
 dconf-cli
@@ -38,11 +44,14 @@ gnome-tweaks
 gthumb
 gtk-update-icon-cache
 libglib2.0-bin
+libgtk-4-dev
 openmpt123
+pkg-config
 python3
 python3-nautilus
 python3-pip
 python3-venv
+rsync
 unzip
 xdg-utils
 EOF

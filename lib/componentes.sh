@@ -8,7 +8,7 @@ COMPONENTES=(
     "transparencias|Extensión Transparencias: opacidad y blur de Nautilus y Ptyxis (conserva sus ajustes)"
     "iconos|Iconos MoreWaita y papelera de Tela-circle"
     "gtk|GTK compacto estilo macOS y diálogos de confirmación"
-    "nautilus|Nautilus compacto, Abrir con gThumb y panel lateral estrecho"
+    "nautilus|Nautilus compacto y sus extensiones (barra de iconos, iconos del panel lateral, Abrir con gThumb…)"
     "terminal|Ptyxis con el perfil MSX"
     "reborde|Reborde de 2 px en las ventanas (P7 Borders)"
     "barra-dock|Barra superior y dock grises"
@@ -61,7 +61,12 @@ instalar_componente() { # instalar_componente <nombre>
             copiar_scripts_tema gtk-compacto.sh dialogos-confirmacion.sh ;;
         nautilus)
             paso "Nautilus"
-            asegurar_paquetes "$(por_distro nautilus-python python3-nautilus)" gthumb
+            asegurar_paquetes "$(por_distro nautilus-python python3-nautilus)" gthumb rsync make
+            if [[ $DISTRO == fedora ]]; then
+                asegurar_paquetes gcc pkgconf-pkg-config gtk4-devel
+            else
+                asegurar_paquetes build-essential pkg-config libgtk-4-dev
+            fi
             tema_nautilus
             copiar_scripts_tema nautilus-compacto.sh
             nautilus -q 2>/dev/null || true ;;

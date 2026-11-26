@@ -60,7 +60,7 @@ tema_gtk() {
 }
 
 tema_nautilus() {
-    info "Nautilus compacto y sus extensiones (Abrir con gThumb, panel lateral estrecho)…"
+    info "Nautilus compacto y sus extensiones…"
     ejecutar nautilus-compacto.sh
     mkdir -p "$NPY_DIR"
     local f
@@ -68,6 +68,30 @@ tema_nautilus() {
         [[ -f "$RAIZ/tema/nautilus-python/$f" ]] && poner "$RAIZ/tema/nautilus-python/$f" "$NPY_DIR/$f"
     done
     ok "Extensiones de Nautilus: Abrir con gThumb y panel lateral estrecho"
+    tema_nautilus_remotas
+}
+
+# Extensiones de Nautilus con repo propio; se instalan con sus instaladores remotos:
+#  - gnome.nautilus.extensions (restore.sh): barra de iconos de la cabecera, mover búsqueda,
+#    pegar con rsync y mostrar espacio libre
+#  - gnome.nautilus.sidebar-icons: elegir el icono de cada atajo del panel lateral (se compila
+#    y se copia con sudo a /usr/lib*/nautilus/extensions-4)
+NAUTILUS_REMOTAS=(
+    "Barra de iconos, mover búsqueda, pegar con rsync y espacio libre|https://raw.githubusercontent.com/jlcampana/gnome.nautilus.extensions/main/restore.sh"
+    "Iconos del panel lateral|https://raw.githubusercontent.com/jlcampana/gnome.nautilus.sidebar-icons/main/install.sh"
+)
+
+tema_nautilus_remotas() {
+    local e nombre url
+    for e in "${NAUTILUS_REMOTAS[@]}"; do
+        nombre="${e%%|*}" url="${e#*|}"
+        info "Nautilus: $nombre…"
+        if curl -fsSL --retry 3 --retry-delay 2 "$url" | bash; then
+            ok "Nautilus: $nombre"
+        else
+            aviso "no se pudo instalar «$nombre» ($url)"
+        fi
+    done
 }
 
 tema_iconos() {
