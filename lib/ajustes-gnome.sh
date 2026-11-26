@@ -90,6 +90,9 @@ aplicar_ajustes_gnome() {
     gs org.gnome.nautilus.preferences show-create-link true
     gs org.gnome.nautilus.preferences show-delete-permanently true
     gs org.gnome.nautilus.preferences show-image-thumbnails 'local-only'
+    # Tamaño inicial: alto justo para ver las unidades montadas del sidebar
+    gs org.gnome.nautilus.window-state initial-size '(1240, 670)'
+    gs org.gnome.nautilus.window-state maximized false
 
     # gThumb: miniaturas de 256 px
     gs org.gnome.gthumb.browser thumbnail-size 256
